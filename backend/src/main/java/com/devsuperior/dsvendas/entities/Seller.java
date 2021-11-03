@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_sellers")
-@Data
 @Getter
 public class Seller {
     @Id
@@ -21,6 +20,9 @@ public class Seller {
 
     @OneToMany(mappedBy = "seller")
     private List<Sale> sales = new ArrayList<>();
+
+    public Seller() {
+    }
 
     public Seller(Long id, String name) {
         this.id = id;
