@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Getter
 public class SellerDTO implements Serializable {
 
-    private static final long serialVersionUID = 1;
+    private static final long serialVersionUID = 1L;
     private Long id;
     private String name;
 
