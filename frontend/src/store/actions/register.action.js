@@ -31,7 +31,7 @@ export const registerUser = (data) => {
             open: true,
             message: 'Authenticating...'
         }))
-        return Http.post(`${API_URL}/user/register`, data)
+        return Http.post(`${API_URL}/user/register`, data, ['Access-Control-Allow-Origin "*"'])
             .then(res => {
                 dispatch(changeLoading({
                     open: false
