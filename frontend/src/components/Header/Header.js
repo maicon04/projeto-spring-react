@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { AppBar, Link, MenuList, MenuItem, Divider, Toolbar, IconButton } from '@material-ui/core'
-import { MenuIcon } from '@material-ui/icons';
+import MenuIcon from '@material-ui/icons/Menu';
 import ImgReactPanel from 'assets/img/ReactPanel.png';
 
 export class Header extends Component {
