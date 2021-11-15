@@ -23,11 +23,11 @@ const styles = {
 export class index extends Component {
     handleClose = () => {
         this.props.changeNotify({
-            open:false
+            open: false
         })
     }
     render() {
-        const classes = this.props
+        const { classes } = this.props
         const messageClass = classNames({
             [classes[this.props.notify.class]]: this.props.notify.class
         })

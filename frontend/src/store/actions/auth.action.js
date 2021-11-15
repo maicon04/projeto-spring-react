@@ -1,4 +1,4 @@
-import { BASE_URL } from 'Utils/requests';
+import { API_URL } from 'Utils/requests';
 import { Http } from '../../config/globalConfig';
 import {changeLoading} from './loading.action';
 import { changeNotify } from './notify.action';
@@ -66,7 +66,7 @@ export const login = (credential) => {
             open:true,
             message:'Authenticating...'
         }))
-        return Http.post(`${BASE_URL}/authenticate`, {
+        return Http.post(`${API_URL}/authenticate`, {
             // gran_type: 'password',
             // client_id: '',
             // client_secret: '',
@@ -79,7 +79,7 @@ export const login = (credential) => {
                     message: ''
                 }))
                 if (typeof response !== 'undefined') {
-                    dispatch(setUserToken(response.data.access_token))
+                    dispatch(setUserToken(response.data.token))
                 }
             })
             .catch(error=>{
@@ -104,7 +104,7 @@ export const login = (credential) => {
                 }else{
                     dispatch(changeNotify({
                         open: true,
-                        message: 'Servidor inacessível',
+                        message: 'O servidor está inacessível',
                         class: 'error'
                     }))
                 }

@@ -17,6 +17,11 @@ const authReducer = (state = initialState.auth, action) => {
                 ...state,
                 ...action.token
             }
+        case actionTypes.SUCCESS:
+            return {
+                ...state,
+                success: action
+            }
         default:
             return {
                 ...state

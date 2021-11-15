@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+
 import { withStyles, Container, Button, Typography, TextField, Link } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 import { login, changeValue } from "store/actions/auth.action";
 import ImgReact from 'assets/img/react-img.png';
 import Loading from '../../components/Loading/index'
 import Notify from "components/Notify";
+import { BASE_URL } from "Utils/requests";
 
 const CollorButton = withStyles(theme => ({
     root: {
@@ -22,7 +24,9 @@ export class Login extends Component {
     login = () => {
         const { credentials } = this.props;
         this.props.login(credentials).then(() => {
-
+            if (this.props.success) {
+                window.location.replace(`${BASE_URL}/home`)
+            }
         })
     }
     render() {
@@ -97,6 +101,7 @@ export class Login extends Component {
 }
 const mapStateToProps = (state) => ({
     credentials: state.authReducer.credentials,
+    success    : state.authReducer.success
 })
 
 const mapDispatchToProps = dispatch => ({

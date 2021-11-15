@@ -1,0 +1,64 @@
+body {
+    background-color: #eee;
+    margin-bottom: 70px;
+}
+
+a,
+a:hover {
+    text-decoration: none!important;
+    color: inherit;
+}
+
+button {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.header {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-color: rgb(229, 229, 229);
+    background-color: #fff;
+    padding: 0;
+}
+
+.header .navbar-nav {
+    flex: 1;
+}
+
+.header .nav-link{
+    font-weight: 600;
+    color: #555;
+    padding: 28px 1.5rem !important;
+}
+
+.header .nav-link i.lg{
+    font-size: 22px;
+    margin-right: 5px;
+}
+
+.header .dropdown-toogle::after{
+    align-self: center !important;
+
+}
+
+.header .dropdown:hover > .dropdown-menu{
+    display:block;
+}
+
+
+.header .dropdown > .dropdown-toogle:active{
+   pointer-events: none;
+}
+
+.header .dropdown-menu{
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px 0px, rgba(0, 0, 0, 0.06) 0px 2px 4px 0px;
+    border:1px solid #eee;
+    top:80%;
+}
+
+.header .dropdown-item{
+    padding:10px 3rem 10px 15px;
+    font-weight: 600;
+
+}

@@ -6,23 +6,27 @@ export default {
             username: '',
             password: ''
         },
-        isLoading: {
-            action: false,
-            message: null
+        success: false
+    },
+    register: {
+        data: {
+            name: '',
+            email: '',
+            password: ''
         },
-        success: false,
-        error: null
+        error: [],
+        success: false
     },
-    loading:{
-        open:false,
-        message:'Loading'
+    loading: {
+        open: false,
+        message: 'Loading'
     },
-    notify:{
-        open:false,
-        class:'success',
-        vertical:'top',
-        horizontal:'center',
-        time:3000,
-        message:''
+    notify: {
+        open: false,
+        class: 'success',
+        vertical: 'top',
+        horizontal: 'center',
+        time: 3000,
+        message: ''
     }
 }

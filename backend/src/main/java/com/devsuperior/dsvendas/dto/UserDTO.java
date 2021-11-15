@@ -23,4 +23,6 @@ public class UserDTO extends RepresentationModel <UserDTO> implements Serializab
 
     private Timestamp createdAt;
 
+    private String token;
+
 }

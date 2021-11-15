@@ -6,12 +6,17 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
+import com.devsuperior.dsvendas.config.JwtTokenUtil;
+import com.devsuperior.dsvendas.services.JwtUserDetailsService;
 import com.devsuperior.dsvendas.util.Converter;
+import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,12 +28,6 @@ import com.devsuperior.dsvendas.entities.User;
 import com.devsuperior.dsvendas.dto.UserDTO;
 import com.devsuperior.dsvendas.services.UserService;
 
-
-/**
- * A Spring {@link RestController} used to showcase the modeling of a REST controller for CRUD operations
- *
- * @author Odilio Noronha Filho
- */
 @RestController
 @RequestMapping(
         path = "/user"
@@ -38,10 +37,30 @@ public class UserController {
     @Autowired
     private UserService UserService;
 
-    @PostMapping
-    public ResponseEntity<HttpStatus> create(@Valid @RequestBody User user) {
-        UserService.create(user);
-        return ResponseEntity.ok(HttpStatus.OK);
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private JwtUserDetailsService userDetailsService;
+
+    @PostMapping(
+            path = "/register"
+    )
+    public Object create(@Valid @RequestBody User user) throws Exception {
+        try {
+            UserService.create(user);
+            UserDTO userDTO = (UserDTO) Converter.toModel(user, UserDTO.class);
+            userDTO.add(linkTo(methodOn(UserController.class).get(user.getId())).withSelfRel());
+            final UserDetails userDetails = userDetailsService
+                    .loadUserByUsername(user.getEmail());
+            final String token = jwtTokenUtil.generateToken(userDetails);
+            userDTO.setToken(token);
+            return ResponseEntity.ok(userDTO);
+        }catch(ConstraintViolationException e) {
+            return new ConstraintViolationException("Email já cadastrado",e.getConstraintViolations());
+            //return ResponseEntity.status(HttpStatus.FORBIDDEN);
+        }
+
     }
 
     @RequestMapping(
@@ -50,7 +69,6 @@ public class UserController {
     )
     public ResponseEntity<UserDTO> get(@PathVariable final Long id) {
         Optional<User> user = UserService.get(id);
-
         if (user.isPresent()) {
             UserDTO userDTO = (UserDTO) Converter.toModel(user.get(), UserDTO.class);
             userDTO.add(linkTo(methodOn(UserController.class).get(id)).withSelfRel());
@@ -60,8 +78,6 @@ public class UserController {
 
         return ResponseEntity.notFound().build();
     }
-
-
 
     @RequestMapping(
             method = RequestMethod.GET,
