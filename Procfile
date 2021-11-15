@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.devsuperior.dsvendas
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.devsuperior.dsvendas.DsvendasApplication
