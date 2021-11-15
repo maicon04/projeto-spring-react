@@ -118,15 +118,12 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${project.parent.version}</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
 				<executions>
 					<execution>
-						<id>repackage</id>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-						<configuration>
-							<classifier>exec</classifier>
-						</configuration>
+						<phase>none</phase>
 					</execution>
 				</executions>
 			</plugin>
