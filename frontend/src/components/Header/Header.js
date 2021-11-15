@@ -21,7 +21,7 @@ export class Header extends Component {
                         <nav className="header navbar navbar-expand-lg navbar-light bg-withe">
                             <div className="container">
                                 <Link className="navbar-brand" to="/">
-                                    <img src={ImgReactPanel} height="50" />
+                                    <img alt="logo" src={ImgReactPanel} height="50" />
                                 </Link>
                                 <ul className="navbar-nav ml-md-5 mr-auto mt-4 mt-md-0">
                                     <li className="nav-item">

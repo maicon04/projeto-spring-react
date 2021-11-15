@@ -37,7 +37,7 @@ export class Login extends Component {
                 <Container component="main" maxWidth="xs">
                     <div className="mt-3 mt-md-5">
                         <div className="text-center">
-                            <img src={ImgReact} height="120" />
+                            <img alt="logo" src={ImgReact} height="120" />
                             <Typography className="mt-3 font-weight-normal" component="h1" variant="h6">
                                 React.js integration with JAVA & Spring BOOT
                             </Typography>
