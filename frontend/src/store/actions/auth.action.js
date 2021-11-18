@@ -64,7 +64,7 @@ export const login = (credential) => {
     return dispatch => {
         dispatch(changeLoading({
             open:true,
-            message:'Authenticating...'
+            message:'Authenticating..'
         }))
         return Http.post(`${API_URL}/authenticate`, {
             // gran_type: 'password',
