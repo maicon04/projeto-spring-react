@@ -1,1 +1,1 @@
-web: java -cp target/classes/;target/dependency/* com.devsuperior.dsvendas.DsvendasApplication
+web: java -cp target/* com.devsuperior.dsvendas.DsvendasApplication
